@@ -1,6 +1,6 @@
 `timescale 1 ns / 1 ns
 `include "constant_values.h"
-module pc(in, out, clk , rst);
+module pc(in, out, load , clk , rst);
     input [31:0] in;
     output reg [31:0] out;
     input clk , rst;
@@ -10,7 +10,7 @@ module pc(in, out, clk , rst);
             out <= `WORD_ZERO;
             $display("@%t: PC::RESET; PC is now 0", $time);
         end
-        else begin
+        else if(load) begin
             out <= in;
             $display("@%t: PC is now %d", $time, in);
         end
