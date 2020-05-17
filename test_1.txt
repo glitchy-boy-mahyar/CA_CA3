@@ -1,0 +1,10 @@
+    add R1, R0, R0
+    add R2, R0, R0
+    addi R3, R0, 40
+FOR: lw R10, 1000(R1)
+    add R2, R2, R10
+    addi R1, R1, 4
+    slt R4, R1, R3
+    beq R4, R0, END_FOR
+    j FOR
+END_FOR: sw R2, 2000(R0)

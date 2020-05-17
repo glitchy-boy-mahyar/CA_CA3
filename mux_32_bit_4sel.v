@@ -1,7 +1,7 @@
 `timescale 1 ns / 1 ns 
 module mux_32_bit_4sel(in_0, in_1 , in_2 , in_3, out, select);
     input [31:0] in_0, in_1 , in_2 , in_3;
-    input select;
+    input [1:0] select;
     output reg [31:0] out;
 
     always @(in_0, in_1, select) begin

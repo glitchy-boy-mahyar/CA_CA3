@@ -10,7 +10,7 @@ module data_path(clk, rst, pc_write, IR_write, reg_dst , jal_reg, pc_to_reg,
             alu_src_A, I_or_D, mem_write, mem_read;
     input [1:0] pc_src, alu_src_B;
     input [2:0] alu_op;
-    output reg ZERO;
+    output ZERO;
     output reg [5:0] opcode, func;
 
 
@@ -23,13 +23,13 @@ module data_path(clk, rst, pc_write, IR_write, reg_dst , jal_reg, pc_to_reg,
 
     pc program_counter(pc_src_out, pc_out, pc_write, clk, rst);
 
-    data_mem memory(I_or_D_out, B_out, data_mem_out, mem_read, mem_write);
+    data_mem memory(I_or_D_out, B_out, data_mem_out, mem_read, mem_write ,clk);
 
     IR_register IR(data_mem_out, IR_out, IR_write, clk);
 
     register_32bit MDR(data_mem_out, MDR_out, clk);
 
-    registe_file reg_file(IR_out[25:21] , IR_out[20:16] , jal_reg_out , pc_to_reg_out , reg_write , read_reg_1 , read_reg_2 , clk);
+    register_file reg_file(IR_out[25:21] , IR_out[20:16] , jal_reg_out , pc_to_reg_out , reg_write , read_reg_1 , read_reg_2 , clk);
 
     register_32bit A(read_reg_1 , A_out , clk);
     register_32bit B(read_reg_2 , B_out , clk);
@@ -46,8 +46,8 @@ module data_path(clk, rst, pc_write, IR_write, reg_dst , jal_reg, pc_to_reg,
     
     mux_32_bit mux_I_or_D(pc_out , AluOut_out , I_or_D_out , I_or_D);
 
-    mux_5bit mux_reg_dst(IR_out[20:16] , IR_out[15:11] , reg_dst_out , reg_dst);
-    mux_5bit mux_jal_reg(reg_dst_out , `THIRTY_ONE , jal_reg_out , jal_reg);
+    mux_5_bit mux_reg_dst(IR_out[20:16] , IR_out[15:11] , reg_dst_out , reg_dst);
+    mux_5_bit mux_jal_reg(reg_dst_out , `THIRTY_ONE , jal_reg_out , jal_reg);
 
     mux_32_bit mux_mem_to_reg(AluOut_out , MDR_out , mem_to_reg_out , mem_to_reg);
     mux_32_bit mux_pc_to_reg(mem_to_reg_out , pc_out , pc_to_reg_out , pc_to_reg);

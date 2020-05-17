@@ -5,10 +5,11 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
 
     input clk, rst, ZERO;
     input [5:0] opcode, func;
-    output reg pc_cntrl_out, IR_write, reg_dst, jal_reg, pc_to_reg, 
-                 mem_to_reg, reg_write, alu_src_A, pc_src, I_or_D, mem_write, mem_read;
-    output reg [1:0] alu_src_B;
-    output reg [2:0] alu_op;
+    output reg IR_write, reg_dst, jal_reg, pc_to_reg, 
+                 mem_to_reg, reg_write, alu_src_A, I_or_D, mem_write, mem_read;
+    output reg [1:0] alu_src_B , pc_src;
+    output [2:0] alu_op;
+    output pc_cntrl_out;
     
     reg [5:0] ctrl_func;
     reg [1:0] alu_ctrl;
