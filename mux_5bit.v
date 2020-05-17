@@ -1,3 +1,4 @@
+`timescale 1 ns / 1 ns
 module mux_5_bit(in_0, in_1, out, select);
     input [4:0] in_0, in_1;
     input select;

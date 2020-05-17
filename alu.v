@@ -1,4 +1,4 @@
-`include "constant_values.h"
+`include "constant_values.vh"
 `timescale 1 ns / 1 ns
 module alu(a, b, y, zero, alu_ctrl);
     input [31:0] a;
@@ -10,27 +10,27 @@ module alu(a, b, y, zero, alu_ctrl);
     always @(alu_ctrl or a or b) begin
         y = `Z;
         case (alu_ctrl)
-            `AND: begin
+            `ALU_AND: begin
                 y = a & b;
                 $display("@%t: ALU::AND: a = %d, b = %d", $time, a, b);
             end
             
-            `OR: begin
+            `ALU_OR: begin
                 y = a | b;
                 $display("@%t: ALU::OR: a = %d, b = %d", $time, a, b);
             end
             
-            `ADD: begin
+            `ALU_ADD: begin
                 y = a + b;
                 $display("@%t: ALU::ADD: a = %d, b = %d", $time, a, b);
             end
             
-            `SUB: begin
+            `ALU_SUB: begin
                 y = a - b;
                 $display("@%t: ALU::SUB: a = %d, b = %d", $time, a, b);
             end
 
-            `SLT: begin
+            `ALU_SLT: begin
                 if (a[31] == 1'b1 && b[31] == 1'b1)
                     y = a < b? `WORD_ONE: `WORD_ZERO;
                 else if (a[31] == 1'b0 && b[31] == 1'b1)
@@ -41,7 +41,7 @@ module alu(a, b, y, zero, alu_ctrl);
                     y = a < b? `WORD_ONE: `WORD_ZERO;
                 $display("@%t: ALU::SLT: a = %d, b = %d", $time, a, b);
             end
-            `OFF: y = `Z;
+            `ALU_OFF: y = `Z;
 
             default: y = `Z;
         endcase
@@ -66,13 +66,13 @@ module alu_test();
     initial begin
     a = 32'b0000000000000000_0000000000001000;
     b = 32'b0000000000000000_0000000000101001;
-    #500 alu_ctrl = `SUB;
+    #500 alu_ctrl = `ALU_SUB;
     #500 b = 32'b0000000000000000_0000000000001000;
     #500 a = 32'b0000000000000000_0000000000101001;
-    #500 alu_ctrl = `ADD;
-    #500 alu_ctrl = `AND;
-    #500 alu_ctrl = `OR;
-    #500 alu_ctrl = `SLT;
+    #500 alu_ctrl = `ALU_ADD;
+    #500 alu_ctrl = `ALU_AND;
+    #500 alu_ctrl = `ALU_OR;
+    #500 alu_ctrl = `ALU_SLT;
     #500 b = 32'b1111111111111111_1111111111111111;
     #500 a = 32'b1111111111111111_1111111111111101;
     b = 32'b1111111111111111_1111111111111011;

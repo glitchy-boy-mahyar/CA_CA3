@@ -1,5 +1,5 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.h"
+`include "constant_values.vh"
 
 module mux_32_bit(in_0, in_1, out, select);
     input [31:0] in_0, in_1;

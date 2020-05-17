@@ -1,3 +1,4 @@
+`timescale 1 ns / 1 ns 
 module mux_32_bit_4sel(in_0, in_1 , in_2 , in_3, out, select);
     input [31:0] in_0, in_1 , in_2 , in_3;
     input select;

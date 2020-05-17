@@ -1,3 +1,4 @@
+`timescale 1 ns / 1 ns
 module IR_register(in , out , load , clk);
     input [31:0] in ;
     input load , clk;

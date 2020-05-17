@@ -1,5 +1,5 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.h"
+`include "constant_values.vh"
 
 module data_mem(address, write_data, read_data, 
 		mem_read, mem_write, clk);
