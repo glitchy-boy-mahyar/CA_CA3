@@ -1,4 +1,4 @@
-`include "constant_values.vh"
+`include "constant_values.h"
 `timescale 1 ns / 1 ns
 module alu(a, b, y, zero, alu_ctrl);
     input [31:0] a;

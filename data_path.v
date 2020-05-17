@@ -1,5 +1,5 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.vh"
+`include "constant_values.h"
 
 module data_path(clk, rst, pc_write, IR_write, reg_dst , jal_reg, pc_to_reg, 
                  mem_to_reg, reg_write, alu_src_A, alu_src_B, alu_op, pc_src, 

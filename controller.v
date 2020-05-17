@@ -1,15 +1,19 @@
-`include "constant_values.vh"
+`include "constant_values.h"
 `timescale 1 ns / 1 ns
-module controller(clk, rst, opcode, func, pc_write, pc_write_cond, IR_write, reg_dst, jal_reg, pc_to_reg, 
-                 mem_to_reg, reg_write, alu_src_A, alu_src_B, alu_ctrl, ctrl_func, pc_src, I_or_D, mem_write, mem_read);
+module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst, jal_reg, pc_to_reg, 
+                 mem_to_reg, reg_write, alu_src_A, alu_src_B, pc_src, I_or_D, mem_write, mem_read , alu_op);
 
-    input clk, rst;
+    input clk, rst, ZERO;
     input [5:0] opcode, func;
-    output reg pc_write, pc_write_cond, IR_write, reg_dst, jal_reg, pc_to_reg, 
+    output reg pc_cntrl_out, IR_write, reg_dst, jal_reg, pc_to_reg, 
                  mem_to_reg, reg_write, alu_src_A, pc_src, I_or_D, mem_write, mem_read;
-    output reg [1:0] alu_src_B, alu_ctrl;
-    output reg [5:0] ctrl_func;
+    output reg [1:0] alu_src_B;
+    output reg [2:0] alu_op;
     
+    reg [5:0] ctrl_func;
+    reg [1:0] alu_ctrl;
+    reg pc_write, pc_write_cond;
+
     parameter IF = 4'b0000;
     parameter ID = 4'b0001;
     parameter BRANCH = 4'b0010;
@@ -23,6 +27,10 @@ module controller(clk, rst, opcode, func, pc_write, pc_write_cond, IR_write, reg
     parameter JAL = 4'b1010;
     parameter JR = 4'b1011;
     parameter IMMEDIATE_EXEC = 4'b1100;
+
+    alu_controller alu_ctrl_unit(alu_ctrl , ctrl_func , alu_op);
+
+    pc_controller pc_ctrl_unit(pc_write , ZERO , pc_write_cond , pc_cntrl_out);
 
     always @(opcode or func) begin
         if (opcode == `OPC_ANDI)
@@ -73,6 +81,7 @@ module controller(clk, rst, opcode, func, pc_write, pc_write_cond, IR_write, reg
             default: ns = IF;            
         endcase    
     end
+
 
     always @(ps) begin
         {pc_write, pc_write_cond, IR_write, reg_dst, jal_reg, pc_to_reg, 

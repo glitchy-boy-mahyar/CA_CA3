@@ -1,5 +1,5 @@
 `timescale 1 ns / 1 ns
-`include "constant_values.vh"
+`include "constant_values.h"
 
 module register_file(read_reg1, read_reg2, write_reg, write_data,
                         reg_write, read_data1, read_data2 , clk);
