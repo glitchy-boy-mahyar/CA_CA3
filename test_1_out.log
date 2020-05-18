@@ -1,0 +1,816 @@
+# @                   0: PC::RESET; PC is now 0
+# $                   0: CONTROLLER::RESET: present state is 0
+# @                   0: CONTROLLER: present state is IF
+# @                   0: ALU_CTRL::MTYPE
+# @                   0: MEMORY::READ: value xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx at address     x is read
+# @                   0: MEMORY::READ: value 00000000000000000000100000100000 at address     0 is read
+# @                 100: PC is now          4
+# @                 100: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                 100: CONTROLLER: present state is ID, opcode is: xxxxxx
+# @                 100: CONTROLLER: present state is ID, opcode is: 000000
+# @                 100: ALU_CTRL::MTYPE
+# @                 100: CONTROLLER: present state is ID, opcode is: 000000
+# @                 200: CONTROLLER: present state is RTYPE_EXECUTION
+# @                 200: ALU_CTRL::RTYPE: func = 100000
+# @                 300: CONTROLLER: present state is RTYPE_COMPLETION
+# @                 400: REG_FILE::WRITE: value          0 stored in register  1
+# @                 400: CONTROLLER: present state is IF
+# @                 400: ALU_CTRL::MTYPE
+# @                 400: MEMORY::READ: value 00000000000000000001000000100000 at address     4 is read
+# @                 500: PC is now          8
+# @                 500: CONTROLLER: present state is ID, opcode is: 000000
+# @                 600: CONTROLLER: present state is RTYPE_EXECUTION
+# @                 600: ALU_CTRL::RTYPE: func = 100000
+# @                 700: CONTROLLER: present state is RTYPE_COMPLETION
+# @                 800: REG_FILE::WRITE: value          0 stored in register  2
+# @                 800: CONTROLLER: present state is IF
+# @                 800: ALU_CTRL::MTYPE
+# @                 800: MEMORY::READ: value 00100000000000110000000000101000 at address     8 is read
+# @                 900: PC is now         12
+# @                 900: REG_FILE::READ: registers  0 =          0,  3 =          0 are read
+# @                 900: CONTROLLER: present state is ID, opcode is: 000000
+# @                 900: CONTROLLER: present state is ID, opcode is: 001000
+# @                1000: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @                1000: ALU_CTRL::RTYPE: func = 100000
+# @                1100: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @                1200: REG_FILE::WRITE: value         40 stored in register  3
+# @                1200: CONTROLLER: present state is IF
+# @                1200: REG_FILE::READ: registers  0 =          0,  3 =         40 are read
+# @                1200: ALU_CTRL::MTYPE
+# @                1200: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @                1300: PC is now         16
+# @                1300: REG_FILE::READ: registers  1 =          0, 10 =          0 are read
+# @                1300: CONTROLLER: present state is ID, opcode is: 001000
+# @                1300: CONTROLLER: present state is ID, opcode is: 100011
+# @                1300: ALU_CTRL::MTYPE
+# @                1400: CONTROLLER: present state is MEM_REF
+# @                1500: CONTROLLER: present state is LW_READ
+# @                1500: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                1500: MEMORY::READ: value 00000000000000000000000000000000 at address  1000 is read
+# @                1600: CONTROLLER: present state is LW_COMPLETION
+# @                1700: REG_FILE::WRITE: value          0 stored in register 10
+# @                1700: CONTROLLER: present state is IF
+# @                1700: ALU_CTRL::MTYPE
+# @                1700: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                1800: PC is now         20
+# @                1800: REG_FILE::READ: registers  2 =          0, 10 =          0 are read
+# @                1800: CONTROLLER: present state is ID, opcode is: 100011
+# @                1800: CONTROLLER: present state is ID, opcode is: 000000
+# @                1800: ALU_CTRL::MTYPE
+# @                1800: CONTROLLER: present state is ID, opcode is: 000000
+# @                1900: CONTROLLER: present state is RTYPE_EXECUTION
+# @                1900: ALU_CTRL::RTYPE: func = 100000
+# @                2000: CONTROLLER: present state is RTYPE_COMPLETION
+# @                2100: REG_FILE::WRITE: value          0 stored in register  2
+# @                2100: CONTROLLER: present state is IF
+# @                2100: ALU_CTRL::MTYPE
+# @                2100: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @                2200: PC is now         24
+# @                2200: REG_FILE::READ: registers  1 =          0,  1 =          0 are read
+# @                2200: CONTROLLER: present state is ID, opcode is: 000000
+# @                2200: CONTROLLER: present state is ID, opcode is: 001000
+# @                2300: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @                2300: ALU_CTRL::RTYPE: func = 100000
+# @                2400: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @                2500: REG_FILE::WRITE: value          4 stored in register  1
+# @                2500: CONTROLLER: present state is IF
+# @                2500: REG_FILE::READ: registers  1 =          4,  1 =          4 are read
+# @                2500: ALU_CTRL::MTYPE
+# @                2500: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @                2600: PC is now         28
+# @                2600: REG_FILE::READ: registers  1 =          4,  3 =         40 are read
+# @                2600: CONTROLLER: present state is ID, opcode is: 001000
+# @                2600: CONTROLLER: present state is ID, opcode is: 000000
+# @                2600: ALU_CTRL::MTYPE
+# @                2600: CONTROLLER: present state is ID, opcode is: 000000
+# @                2700: CONTROLLER: present state is RTYPE_EXECUTION
+# @                2700: ALU_CTRL::RTYPE: func = 101010
+# @                2800: CONTROLLER: present state is RTYPE_COMPLETION
+# @                2900: REG_FILE::WRITE: value          1 stored in register  4
+# @                2900: CONTROLLER: present state is IF
+# @                2900: ALU_CTRL::MTYPE
+# @                2900: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @                3000: PC is now         32
+# @                3000: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                3000: CONTROLLER: present state is ID, opcode is: 000000
+# @                3000: CONTROLLER: present state is ID, opcode is: 000100
+# @                3000: ALU_CTRL::MTYPE
+# @                3000: CONTROLLER: present state is ID, opcode is: 000100
+# @                3100: CONTROLLER: present state is BRANCH
+# @                3100: ALU_CTRL::BTYPE
+# @                3200: CONTROLLER: present state is IF
+# @                3200: ALU_CTRL::MTYPE
+# @                3200: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @                3300: PC is now         36
+# @                3300: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                3300: CONTROLLER: present state is ID, opcode is: 000100
+# @                3300: CONTROLLER: present state is ID, opcode is: 000010
+# @                3300: ALU_CTRL::MTYPE
+# @                3300: CONTROLLER: present state is ID, opcode is: 000010
+# @                3400: CONTROLLER: present state is JUMP
+# @                3400: ALU_CTRL::JTYPE
+# @                3500: PC is now         12
+# @                3500: CONTROLLER: present state is IF
+# @                3500: ALU_CTRL::MTYPE
+# @                3500: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @                3600: PC is now         16
+# @                3600: REG_FILE::READ: registers  1 =          4, 10 =          0 are read
+# @                3600: CONTROLLER: present state is ID, opcode is: 000010
+# @                3600: CONTROLLER: present state is ID, opcode is: 100011
+# @                3600: ALU_CTRL::MTYPE
+# @                3600: CONTROLLER: present state is ID, opcode is: 100011
+# @                3700: CONTROLLER: present state is MEM_REF
+# @                3800: CONTROLLER: present state is LW_READ
+# @                3800: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                3800: MEMORY::READ: value 00000000000000000000000000000001 at address  1004 is read
+# @                3900: CONTROLLER: present state is LW_COMPLETION
+# @                4000: REG_FILE::WRITE: value          1 stored in register 10
+# @                4000: CONTROLLER: present state is IF
+# @                4000: REG_FILE::READ: registers  1 =          4, 10 =          1 are read
+# @                4000: ALU_CTRL::MTYPE
+# @                4000: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                4100: PC is now         20
+# @                4100: REG_FILE::READ: registers  2 =          0, 10 =          1 are read
+# @                4100: CONTROLLER: present state is ID, opcode is: 100011
+# @                4100: CONTROLLER: present state is ID, opcode is: 000000
+# @                4100: ALU_CTRL::MTYPE
+# @                4100: CONTROLLER: present state is ID, opcode is: 000000
+# @                4200: CONTROLLER: present state is RTYPE_EXECUTION
+# @                4200: ALU_CTRL::RTYPE: func = 100000
+# @                4300: CONTROLLER: present state is RTYPE_COMPLETION
+# @                4400: REG_FILE::WRITE: value          1 stored in register  2
+# @                4400: CONTROLLER: present state is IF
+# @                4400: REG_FILE::READ: registers  2 =          1, 10 =          1 are read
+# @                4400: ALU_CTRL::MTYPE
+# @                4400: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @                4500: PC is now         24
+# @                4500: REG_FILE::READ: registers  1 =          4,  1 =          4 are read
+# @                4500: CONTROLLER: present state is ID, opcode is: 000000
+# @                4500: CONTROLLER: present state is ID, opcode is: 001000
+# @                4600: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @                4600: ALU_CTRL::RTYPE: func = 100000
+# @                4700: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @                4800: REG_FILE::WRITE: value          8 stored in register  1
+# @                4800: CONTROLLER: present state is IF
+# @                4800: REG_FILE::READ: registers  1 =          8,  1 =          8 are read
+# @                4800: ALU_CTRL::MTYPE
+# @                4800: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @                4900: PC is now         28
+# @                4900: REG_FILE::READ: registers  1 =          8,  3 =         40 are read
+# @                4900: CONTROLLER: present state is ID, opcode is: 001000
+# @                4900: CONTROLLER: present state is ID, opcode is: 000000
+# @                4900: ALU_CTRL::MTYPE
+# @                4900: CONTROLLER: present state is ID, opcode is: 000000
+# @                5000: CONTROLLER: present state is RTYPE_EXECUTION
+# @                5000: ALU_CTRL::RTYPE: func = 101010
+# @                5100: CONTROLLER: present state is RTYPE_COMPLETION
+# @                5200: REG_FILE::WRITE: value          1 stored in register  4
+# @                5200: CONTROLLER: present state is IF
+# @                5200: ALU_CTRL::MTYPE
+# @                5200: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @                5300: PC is now         32
+# @                5300: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                5300: CONTROLLER: present state is ID, opcode is: 000000
+# @                5300: CONTROLLER: present state is ID, opcode is: 000100
+# @                5300: ALU_CTRL::MTYPE
+# @                5300: CONTROLLER: present state is ID, opcode is: 000100
+# @                5400: CONTROLLER: present state is BRANCH
+# @                5400: ALU_CTRL::BTYPE
+# @                5500: CONTROLLER: present state is IF
+# @                5500: ALU_CTRL::MTYPE
+# @                5500: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @                5600: PC is now         36
+# @                5600: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                5600: CONTROLLER: present state is ID, opcode is: 000100
+# @                5600: CONTROLLER: present state is ID, opcode is: 000010
+# @                5600: ALU_CTRL::MTYPE
+# @                5600: CONTROLLER: present state is ID, opcode is: 000010
+# @                5700: CONTROLLER: present state is JUMP
+# @                5700: ALU_CTRL::JTYPE
+# @                5800: PC is now         12
+# @                5800: CONTROLLER: present state is IF
+# @                5800: ALU_CTRL::MTYPE
+# @                5800: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @                5900: PC is now         16
+# @                5900: REG_FILE::READ: registers  1 =          8, 10 =          1 are read
+# @                5900: CONTROLLER: present state is ID, opcode is: 000010
+# @                5900: CONTROLLER: present state is ID, opcode is: 100011
+# @                5900: ALU_CTRL::MTYPE
+# @                5900: CONTROLLER: present state is ID, opcode is: 100011
+# @                6000: CONTROLLER: present state is MEM_REF
+# @                6100: CONTROLLER: present state is LW_READ
+# @                6100: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                6100: MEMORY::READ: value 00000000000000000000000000000010 at address  1008 is read
+# @                6200: CONTROLLER: present state is LW_COMPLETION
+# @                6300: REG_FILE::WRITE: value          2 stored in register 10
+# @                6300: CONTROLLER: present state is IF
+# @                6300: REG_FILE::READ: registers  1 =          8, 10 =          2 are read
+# @                6300: ALU_CTRL::MTYPE
+# @                6300: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                6400: PC is now         20
+# @                6400: REG_FILE::READ: registers  2 =          1, 10 =          2 are read
+# @                6400: CONTROLLER: present state is ID, opcode is: 100011
+# @                6400: CONTROLLER: present state is ID, opcode is: 000000
+# @                6400: ALU_CTRL::MTYPE
+# @                6400: CONTROLLER: present state is ID, opcode is: 000000
+# @                6500: CONTROLLER: present state is RTYPE_EXECUTION
+# @                6500: ALU_CTRL::RTYPE: func = 100000
+# @                6600: CONTROLLER: present state is RTYPE_COMPLETION
+# @                6700: REG_FILE::WRITE: value          3 stored in register  2
+# @                6700: CONTROLLER: present state is IF
+# @                6700: REG_FILE::READ: registers  2 =          3, 10 =          2 are read
+# @                6700: ALU_CTRL::MTYPE
+# @                6700: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @                6800: PC is now         24
+# @                6800: REG_FILE::READ: registers  1 =          8,  1 =          8 are read
+# @                6800: CONTROLLER: present state is ID, opcode is: 000000
+# @                6800: CONTROLLER: present state is ID, opcode is: 001000
+# @                6900: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @                6900: ALU_CTRL::RTYPE: func = 100000
+# @                7000: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @                7100: REG_FILE::WRITE: value         12 stored in register  1
+# @                7100: CONTROLLER: present state is IF
+# @                7100: REG_FILE::READ: registers  1 =         12,  1 =         12 are read
+# @                7100: ALU_CTRL::MTYPE
+# @                7100: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @                7200: PC is now         28
+# @                7200: REG_FILE::READ: registers  1 =         12,  3 =         40 are read
+# @                7200: CONTROLLER: present state is ID, opcode is: 001000
+# @                7200: CONTROLLER: present state is ID, opcode is: 000000
+# @                7200: ALU_CTRL::MTYPE
+# @                7200: CONTROLLER: present state is ID, opcode is: 000000
+# @                7300: CONTROLLER: present state is RTYPE_EXECUTION
+# @                7300: ALU_CTRL::RTYPE: func = 101010
+# @                7400: CONTROLLER: present state is RTYPE_COMPLETION
+# @                7500: REG_FILE::WRITE: value          1 stored in register  4
+# @                7500: CONTROLLER: present state is IF
+# @                7500: ALU_CTRL::MTYPE
+# @                7500: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @                7600: PC is now         32
+# @                7600: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                7600: CONTROLLER: present state is ID, opcode is: 000000
+# @                7600: CONTROLLER: present state is ID, opcode is: 000100
+# @                7600: ALU_CTRL::MTYPE
+# @                7600: CONTROLLER: present state is ID, opcode is: 000100
+# @                7700: CONTROLLER: present state is BRANCH
+# @                7700: ALU_CTRL::BTYPE
+# @                7800: CONTROLLER: present state is IF
+# @                7800: ALU_CTRL::MTYPE
+# @                7800: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @                7900: PC is now         36
+# @                7900: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @                7900: CONTROLLER: present state is ID, opcode is: 000100
+# @                7900: CONTROLLER: present state is ID, opcode is: 000010
+# @                7900: ALU_CTRL::MTYPE
+# @                7900: CONTROLLER: present state is ID, opcode is: 000010
+# @                8000: CONTROLLER: present state is JUMP
+# @                8000: ALU_CTRL::JTYPE
+# @                8100: PC is now         12
+# @                8100: CONTROLLER: present state is IF
+# @                8100: ALU_CTRL::MTYPE
+# @                8100: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @                8200: PC is now         16
+# @                8200: REG_FILE::READ: registers  1 =         12, 10 =          2 are read
+# @                8200: CONTROLLER: present state is ID, opcode is: 000010
+# @                8200: CONTROLLER: present state is ID, opcode is: 100011
+# @                8200: ALU_CTRL::MTYPE
+# @                8200: CONTROLLER: present state is ID, opcode is: 100011
+# @                8300: CONTROLLER: present state is MEM_REF
+# @                8400: CONTROLLER: present state is LW_READ
+# @                8400: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                8400: MEMORY::READ: value 00000000000000000000000000000011 at address  1012 is read
+# @                8500: CONTROLLER: present state is LW_COMPLETION
+# @                8600: REG_FILE::WRITE: value          3 stored in register 10
+# @                8600: CONTROLLER: present state is IF
+# @                8600: REG_FILE::READ: registers  1 =         12, 10 =          3 are read
+# @                8600: ALU_CTRL::MTYPE
+# @                8600: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @                8700: PC is now         20
+# @                8700: REG_FILE::READ: registers  2 =          3, 10 =          3 are read
+# @                8700: CONTROLLER: present state is ID, opcode is: 100011
+# @                8700: CONTROLLER: present state is ID, opcode is: 000000
+# @                8700: ALU_CTRL::MTYPE
+# @                8700: CONTROLLER: present state is ID, opcode is: 000000
+# @                8800: CONTROLLER: present state is RTYPE_EXECUTION
+# @                8800: ALU_CTRL::RTYPE: func = 100000
+# @                8900: CONTROLLER: present state is RTYPE_COMPLETION
+# @                9000: REG_FILE::WRITE: value          6 stored in register  2
+# @                9000: CONTROLLER: present state is IF
+# @                9000: REG_FILE::READ: registers  2 =          6, 10 =          3 are read
+# @                9000: ALU_CTRL::MTYPE
+# @                9000: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @                9100: PC is now         24
+# @                9100: REG_FILE::READ: registers  1 =         12,  1 =         12 are read
+# @                9100: CONTROLLER: present state is ID, opcode is: 000000
+# @                9100: CONTROLLER: present state is ID, opcode is: 001000
+# @                9200: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @                9200: ALU_CTRL::RTYPE: func = 100000
+# @                9300: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @                9400: REG_FILE::WRITE: value         16 stored in register  1
+# @                9400: CONTROLLER: present state is IF
+# @                9400: REG_FILE::READ: registers  1 =         16,  1 =         16 are read
+# @                9400: ALU_CTRL::MTYPE
+# @                9400: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @                9500: PC is now         28
+# @                9500: REG_FILE::READ: registers  1 =         16,  3 =         40 are read
+# @                9500: CONTROLLER: present state is ID, opcode is: 001000
+# @                9500: CONTROLLER: present state is ID, opcode is: 000000
+# @                9500: ALU_CTRL::MTYPE
+# @                9500: CONTROLLER: present state is ID, opcode is: 000000
+# @                9600: CONTROLLER: present state is RTYPE_EXECUTION
+# @                9600: ALU_CTRL::RTYPE: func = 101010
+# @                9700: CONTROLLER: present state is RTYPE_COMPLETION
+# @                9800: REG_FILE::WRITE: value          1 stored in register  4
+# @                9800: CONTROLLER: present state is IF
+# @                9800: ALU_CTRL::MTYPE
+# @                9800: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @                9900: PC is now         32
+# @                9900: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @                9900: CONTROLLER: present state is ID, opcode is: 000000
+# @                9900: CONTROLLER: present state is ID, opcode is: 000100
+# @                9900: ALU_CTRL::MTYPE
+# @                9900: CONTROLLER: present state is ID, opcode is: 000100
+# @               10000: CONTROLLER: present state is BRANCH
+# @               10000: ALU_CTRL::BTYPE
+# @               10100: CONTROLLER: present state is IF
+# @               10100: ALU_CTRL::MTYPE
+# @               10100: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @               10200: PC is now         36
+# @               10200: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               10200: CONTROLLER: present state is ID, opcode is: 000100
+# @               10200: CONTROLLER: present state is ID, opcode is: 000010
+# @               10200: ALU_CTRL::MTYPE
+# @               10200: CONTROLLER: present state is ID, opcode is: 000010
+# @               10300: CONTROLLER: present state is JUMP
+# @               10300: ALU_CTRL::JTYPE
+# @               10400: PC is now         12
+# @               10400: CONTROLLER: present state is IF
+# @               10400: ALU_CTRL::MTYPE
+# @               10400: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @               10500: PC is now         16
+# @               10500: REG_FILE::READ: registers  1 =         16, 10 =          3 are read
+# @               10500: CONTROLLER: present state is ID, opcode is: 000010
+# @               10500: CONTROLLER: present state is ID, opcode is: 100011
+# @               10500: ALU_CTRL::MTYPE
+# @               10500: CONTROLLER: present state is ID, opcode is: 100011
+# @               10600: CONTROLLER: present state is MEM_REF
+# @               10700: CONTROLLER: present state is LW_READ
+# @               10700: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               10700: MEMORY::READ: value 00000000000000000000000000000100 at address  1016 is read
+# @               10800: CONTROLLER: present state is LW_COMPLETION
+# @               10900: REG_FILE::WRITE: value          4 stored in register 10
+# @               10900: CONTROLLER: present state is IF
+# @               10900: REG_FILE::READ: registers  1 =         16, 10 =          4 are read
+# @               10900: ALU_CTRL::MTYPE
+# @               10900: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               11000: PC is now         20
+# @               11000: REG_FILE::READ: registers  2 =          6, 10 =          4 are read
+# @               11000: CONTROLLER: present state is ID, opcode is: 100011
+# @               11000: CONTROLLER: present state is ID, opcode is: 000000
+# @               11000: ALU_CTRL::MTYPE
+# @               11000: CONTROLLER: present state is ID, opcode is: 000000
+# @               11100: CONTROLLER: present state is RTYPE_EXECUTION
+# @               11100: ALU_CTRL::RTYPE: func = 100000
+# @               11200: CONTROLLER: present state is RTYPE_COMPLETION
+# @               11300: REG_FILE::WRITE: value         10 stored in register  2
+# @               11300: CONTROLLER: present state is IF
+# @               11300: REG_FILE::READ: registers  2 =         10, 10 =          4 are read
+# @               11300: ALU_CTRL::MTYPE
+# @               11300: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @               11400: PC is now         24
+# @               11400: REG_FILE::READ: registers  1 =         16,  1 =         16 are read
+# @               11400: CONTROLLER: present state is ID, opcode is: 000000
+# @               11400: CONTROLLER: present state is ID, opcode is: 001000
+# @               11500: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @               11500: ALU_CTRL::RTYPE: func = 100000
+# @               11600: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @               11700: REG_FILE::WRITE: value         20 stored in register  1
+# @               11700: CONTROLLER: present state is IF
+# @               11700: REG_FILE::READ: registers  1 =         20,  1 =         20 are read
+# @               11700: ALU_CTRL::MTYPE
+# @               11700: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @               11800: PC is now         28
+# @               11800: REG_FILE::READ: registers  1 =         20,  3 =         40 are read
+# @               11800: CONTROLLER: present state is ID, opcode is: 001000
+# @               11800: CONTROLLER: present state is ID, opcode is: 000000
+# @               11800: ALU_CTRL::MTYPE
+# @               11800: CONTROLLER: present state is ID, opcode is: 000000
+# @               11900: CONTROLLER: present state is RTYPE_EXECUTION
+# @               11900: ALU_CTRL::RTYPE: func = 101010
+# @               12000: CONTROLLER: present state is RTYPE_COMPLETION
+# @               12100: REG_FILE::WRITE: value          1 stored in register  4
+# @               12100: CONTROLLER: present state is IF
+# @               12100: ALU_CTRL::MTYPE
+# @               12100: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @               12200: PC is now         32
+# @               12200: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @               12200: CONTROLLER: present state is ID, opcode is: 000000
+# @               12200: CONTROLLER: present state is ID, opcode is: 000100
+# @               12200: ALU_CTRL::MTYPE
+# @               12200: CONTROLLER: present state is ID, opcode is: 000100
+# @               12300: CONTROLLER: present state is BRANCH
+# @               12300: ALU_CTRL::BTYPE
+# @               12400: CONTROLLER: present state is IF
+# @               12400: ALU_CTRL::MTYPE
+# @               12400: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @               12500: PC is now         36
+# @               12500: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               12500: CONTROLLER: present state is ID, opcode is: 000100
+# @               12500: CONTROLLER: present state is ID, opcode is: 000010
+# @               12500: ALU_CTRL::MTYPE
+# @               12500: CONTROLLER: present state is ID, opcode is: 000010
+# @               12600: CONTROLLER: present state is JUMP
+# @               12600: ALU_CTRL::JTYPE
+# @               12700: PC is now         12
+# @               12700: CONTROLLER: present state is IF
+# @               12700: ALU_CTRL::MTYPE
+# @               12700: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @               12800: PC is now         16
+# @               12800: REG_FILE::READ: registers  1 =         20, 10 =          4 are read
+# @               12800: CONTROLLER: present state is ID, opcode is: 000010
+# @               12800: CONTROLLER: present state is ID, opcode is: 100011
+# @               12800: ALU_CTRL::MTYPE
+# @               12800: CONTROLLER: present state is ID, opcode is: 100011
+# @               12900: CONTROLLER: present state is MEM_REF
+# @               13000: CONTROLLER: present state is LW_READ
+# @               13000: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               13000: MEMORY::READ: value 00000000000000000000000000000101 at address  1020 is read
+# @               13100: CONTROLLER: present state is LW_COMPLETION
+# @               13200: REG_FILE::WRITE: value          5 stored in register 10
+# @               13200: CONTROLLER: present state is IF
+# @               13200: REG_FILE::READ: registers  1 =         20, 10 =          5 are read
+# @               13200: ALU_CTRL::MTYPE
+# @               13200: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               13300: PC is now         20
+# @               13300: REG_FILE::READ: registers  2 =         10, 10 =          5 are read
+# @               13300: CONTROLLER: present state is ID, opcode is: 100011
+# @               13300: CONTROLLER: present state is ID, opcode is: 000000
+# @               13300: ALU_CTRL::MTYPE
+# @               13300: CONTROLLER: present state is ID, opcode is: 000000
+# @               13400: CONTROLLER: present state is RTYPE_EXECUTION
+# @               13400: ALU_CTRL::RTYPE: func = 100000
+# @               13500: CONTROLLER: present state is RTYPE_COMPLETION
+# @               13600: REG_FILE::WRITE: value         15 stored in register  2
+# @               13600: CONTROLLER: present state is IF
+# @               13600: REG_FILE::READ: registers  2 =         15, 10 =          5 are read
+# @               13600: ALU_CTRL::MTYPE
+# @               13600: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @               13700: PC is now         24
+# @               13700: REG_FILE::READ: registers  1 =         20,  1 =         20 are read
+# @               13700: CONTROLLER: present state is ID, opcode is: 000000
+# @               13700: CONTROLLER: present state is ID, opcode is: 001000
+# @               13800: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @               13800: ALU_CTRL::RTYPE: func = 100000
+# @               13900: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @               14000: REG_FILE::WRITE: value         24 stored in register  1
+# @               14000: CONTROLLER: present state is IF
+# @               14000: REG_FILE::READ: registers  1 =         24,  1 =         24 are read
+# @               14000: ALU_CTRL::MTYPE
+# @               14000: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @               14100: PC is now         28
+# @               14100: REG_FILE::READ: registers  1 =         24,  3 =         40 are read
+# @               14100: CONTROLLER: present state is ID, opcode is: 001000
+# @               14100: CONTROLLER: present state is ID, opcode is: 000000
+# @               14100: ALU_CTRL::MTYPE
+# @               14100: CONTROLLER: present state is ID, opcode is: 000000
+# @               14200: CONTROLLER: present state is RTYPE_EXECUTION
+# @               14200: ALU_CTRL::RTYPE: func = 101010
+# @               14300: CONTROLLER: present state is RTYPE_COMPLETION
+# @               14400: REG_FILE::WRITE: value          1 stored in register  4
+# @               14400: CONTROLLER: present state is IF
+# @               14400: ALU_CTRL::MTYPE
+# @               14400: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @               14500: PC is now         32
+# @               14500: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @               14500: CONTROLLER: present state is ID, opcode is: 000000
+# @               14500: CONTROLLER: present state is ID, opcode is: 000100
+# @               14500: ALU_CTRL::MTYPE
+# @               14500: CONTROLLER: present state is ID, opcode is: 000100
+# @               14600: CONTROLLER: present state is BRANCH
+# @               14600: ALU_CTRL::BTYPE
+# @               14700: CONTROLLER: present state is IF
+# @               14700: ALU_CTRL::MTYPE
+# @               14700: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @               14800: PC is now         36
+# @               14800: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               14800: CONTROLLER: present state is ID, opcode is: 000100
+# @               14800: CONTROLLER: present state is ID, opcode is: 000010
+# @               14800: ALU_CTRL::MTYPE
+# @               14800: CONTROLLER: present state is ID, opcode is: 000010
+# @               14900: CONTROLLER: present state is JUMP
+# @               14900: ALU_CTRL::JTYPE
+# @               15000: PC is now         12
+# @               15000: CONTROLLER: present state is IF
+# @               15000: ALU_CTRL::MTYPE
+# @               15000: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @               15100: PC is now         16
+# @               15100: REG_FILE::READ: registers  1 =         24, 10 =          5 are read
+# @               15100: CONTROLLER: present state is ID, opcode is: 000010
+# @               15100: CONTROLLER: present state is ID, opcode is: 100011
+# @               15100: ALU_CTRL::MTYPE
+# @               15100: CONTROLLER: present state is ID, opcode is: 100011
+# @               15200: CONTROLLER: present state is MEM_REF
+# @               15300: CONTROLLER: present state is LW_READ
+# @               15300: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               15300: MEMORY::READ: value 00000000000000000000000000000110 at address  1024 is read
+# @               15400: CONTROLLER: present state is LW_COMPLETION
+# @               15500: REG_FILE::WRITE: value          6 stored in register 10
+# @               15500: CONTROLLER: present state is IF
+# @               15500: REG_FILE::READ: registers  1 =         24, 10 =          6 are read
+# @               15500: ALU_CTRL::MTYPE
+# @               15500: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               15600: PC is now         20
+# @               15600: REG_FILE::READ: registers  2 =         15, 10 =          6 are read
+# @               15600: CONTROLLER: present state is ID, opcode is: 100011
+# @               15600: CONTROLLER: present state is ID, opcode is: 000000
+# @               15600: ALU_CTRL::MTYPE
+# @               15600: CONTROLLER: present state is ID, opcode is: 000000
+# @               15700: CONTROLLER: present state is RTYPE_EXECUTION
+# @               15700: ALU_CTRL::RTYPE: func = 100000
+# @               15800: CONTROLLER: present state is RTYPE_COMPLETION
+# @               15900: REG_FILE::WRITE: value         21 stored in register  2
+# @               15900: CONTROLLER: present state is IF
+# @               15900: REG_FILE::READ: registers  2 =         21, 10 =          6 are read
+# @               15900: ALU_CTRL::MTYPE
+# @               15900: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @               16000: PC is now         24
+# @               16000: REG_FILE::READ: registers  1 =         24,  1 =         24 are read
+# @               16000: CONTROLLER: present state is ID, opcode is: 000000
+# @               16000: CONTROLLER: present state is ID, opcode is: 001000
+# @               16100: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @               16100: ALU_CTRL::RTYPE: func = 100000
+# @               16200: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @               16300: REG_FILE::WRITE: value         28 stored in register  1
+# @               16300: CONTROLLER: present state is IF
+# @               16300: REG_FILE::READ: registers  1 =         28,  1 =         28 are read
+# @               16300: ALU_CTRL::MTYPE
+# @               16300: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @               16400: PC is now         28
+# @               16400: REG_FILE::READ: registers  1 =         28,  3 =         40 are read
+# @               16400: CONTROLLER: present state is ID, opcode is: 001000
+# @               16400: CONTROLLER: present state is ID, opcode is: 000000
+# @               16400: ALU_CTRL::MTYPE
+# @               16400: CONTROLLER: present state is ID, opcode is: 000000
+# @               16500: CONTROLLER: present state is RTYPE_EXECUTION
+# @               16500: ALU_CTRL::RTYPE: func = 101010
+# @               16600: CONTROLLER: present state is RTYPE_COMPLETION
+# @               16700: REG_FILE::WRITE: value          1 stored in register  4
+# @               16700: CONTROLLER: present state is IF
+# @               16700: ALU_CTRL::MTYPE
+# @               16700: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @               16800: PC is now         32
+# @               16800: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @               16800: CONTROLLER: present state is ID, opcode is: 000000
+# @               16800: CONTROLLER: present state is ID, opcode is: 000100
+# @               16800: ALU_CTRL::MTYPE
+# @               16800: CONTROLLER: present state is ID, opcode is: 000100
+# @               16900: CONTROLLER: present state is BRANCH
+# @               16900: ALU_CTRL::BTYPE
+# @               17000: CONTROLLER: present state is IF
+# @               17000: ALU_CTRL::MTYPE
+# @               17000: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @               17100: PC is now         36
+# @               17100: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               17100: CONTROLLER: present state is ID, opcode is: 000100
+# @               17100: CONTROLLER: present state is ID, opcode is: 000010
+# @               17100: ALU_CTRL::MTYPE
+# @               17100: CONTROLLER: present state is ID, opcode is: 000010
+# @               17200: CONTROLLER: present state is JUMP
+# @               17200: ALU_CTRL::JTYPE
+# @               17300: PC is now         12
+# @               17300: CONTROLLER: present state is IF
+# @               17300: ALU_CTRL::MTYPE
+# @               17300: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @               17400: PC is now         16
+# @               17400: REG_FILE::READ: registers  1 =         28, 10 =          6 are read
+# @               17400: CONTROLLER: present state is ID, opcode is: 000010
+# @               17400: CONTROLLER: present state is ID, opcode is: 100011
+# @               17400: ALU_CTRL::MTYPE
+# @               17400: CONTROLLER: present state is ID, opcode is: 100011
+# @               17500: CONTROLLER: present state is MEM_REF
+# @               17600: CONTROLLER: present state is LW_READ
+# @               17600: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               17600: MEMORY::READ: value 00000000000000000000000000000111 at address  1028 is read
+# @               17700: CONTROLLER: present state is LW_COMPLETION
+# @               17800: REG_FILE::WRITE: value          7 stored in register 10
+# @               17800: CONTROLLER: present state is IF
+# @               17800: REG_FILE::READ: registers  1 =         28, 10 =          7 are read
+# @               17800: ALU_CTRL::MTYPE
+# @               17800: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               17900: PC is now         20
+# @               17900: REG_FILE::READ: registers  2 =         21, 10 =          7 are read
+# @               17900: CONTROLLER: present state is ID, opcode is: 100011
+# @               17900: CONTROLLER: present state is ID, opcode is: 000000
+# @               17900: ALU_CTRL::MTYPE
+# @               17900: CONTROLLER: present state is ID, opcode is: 000000
+# @               18000: CONTROLLER: present state is RTYPE_EXECUTION
+# @               18000: ALU_CTRL::RTYPE: func = 100000
+# @               18100: CONTROLLER: present state is RTYPE_COMPLETION
+# @               18200: REG_FILE::WRITE: value         28 stored in register  2
+# @               18200: CONTROLLER: present state is IF
+# @               18200: REG_FILE::READ: registers  2 =         28, 10 =          7 are read
+# @               18200: ALU_CTRL::MTYPE
+# @               18200: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @               18300: PC is now         24
+# @               18300: REG_FILE::READ: registers  1 =         28,  1 =         28 are read
+# @               18300: CONTROLLER: present state is ID, opcode is: 000000
+# @               18300: CONTROLLER: present state is ID, opcode is: 001000
+# @               18400: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @               18400: ALU_CTRL::RTYPE: func = 100000
+# @               18500: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @               18600: REG_FILE::WRITE: value         32 stored in register  1
+# @               18600: CONTROLLER: present state is IF
+# @               18600: REG_FILE::READ: registers  1 =         32,  1 =         32 are read
+# @               18600: ALU_CTRL::MTYPE
+# @               18600: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @               18700: PC is now         28
+# @               18700: REG_FILE::READ: registers  1 =         32,  3 =         40 are read
+# @               18700: CONTROLLER: present state is ID, opcode is: 001000
+# @               18700: CONTROLLER: present state is ID, opcode is: 000000
+# @               18700: ALU_CTRL::MTYPE
+# @               18700: CONTROLLER: present state is ID, opcode is: 000000
+# @               18800: CONTROLLER: present state is RTYPE_EXECUTION
+# @               18800: ALU_CTRL::RTYPE: func = 101010
+# @               18900: CONTROLLER: present state is RTYPE_COMPLETION
+# @               19000: REG_FILE::WRITE: value          1 stored in register  4
+# @               19000: CONTROLLER: present state is IF
+# @               19000: ALU_CTRL::MTYPE
+# @               19000: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @               19100: PC is now         32
+# @               19100: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @               19100: CONTROLLER: present state is ID, opcode is: 000000
+# @               19100: CONTROLLER: present state is ID, opcode is: 000100
+# @               19100: ALU_CTRL::MTYPE
+# @               19100: CONTROLLER: present state is ID, opcode is: 000100
+# @               19200: CONTROLLER: present state is BRANCH
+# @               19200: ALU_CTRL::BTYPE
+# @               19300: CONTROLLER: present state is IF
+# @               19300: ALU_CTRL::MTYPE
+# @               19300: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @               19400: PC is now         36
+# @               19400: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               19400: CONTROLLER: present state is ID, opcode is: 000100
+# @               19400: CONTROLLER: present state is ID, opcode is: 000010
+# @               19400: ALU_CTRL::MTYPE
+# @               19400: CONTROLLER: present state is ID, opcode is: 000010
+# @               19500: CONTROLLER: present state is JUMP
+# @               19500: ALU_CTRL::JTYPE
+# @               19600: PC is now         12
+# @               19600: CONTROLLER: present state is IF
+# @               19600: ALU_CTRL::MTYPE
+# @               19600: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @               19700: PC is now         16
+# @               19700: REG_FILE::READ: registers  1 =         32, 10 =          7 are read
+# @               19700: CONTROLLER: present state is ID, opcode is: 000010
+# @               19700: CONTROLLER: present state is ID, opcode is: 100011
+# @               19700: ALU_CTRL::MTYPE
+# @               19700: CONTROLLER: present state is ID, opcode is: 100011
+# @               19800: CONTROLLER: present state is MEM_REF
+# @               19900: CONTROLLER: present state is LW_READ
+# @               19900: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               19900: MEMORY::READ: value 00000000000000000000000000001000 at address  1032 is read
+# @               20000: CONTROLLER: present state is LW_COMPLETION
+# @               20100: REG_FILE::WRITE: value          8 stored in register 10
+# @               20100: CONTROLLER: present state is IF
+# @               20100: REG_FILE::READ: registers  1 =         32, 10 =          8 are read
+# @               20100: ALU_CTRL::MTYPE
+# @               20100: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               20200: PC is now         20
+# @               20200: REG_FILE::READ: registers  2 =         28, 10 =          8 are read
+# @               20200: CONTROLLER: present state is ID, opcode is: 100011
+# @               20200: CONTROLLER: present state is ID, opcode is: 000000
+# @               20200: ALU_CTRL::MTYPE
+# @               20200: CONTROLLER: present state is ID, opcode is: 000000
+# @               20300: CONTROLLER: present state is RTYPE_EXECUTION
+# @               20300: ALU_CTRL::RTYPE: func = 100000
+# @               20400: CONTROLLER: present state is RTYPE_COMPLETION
+# @               20500: REG_FILE::WRITE: value         36 stored in register  2
+# @               20500: CONTROLLER: present state is IF
+# @               20500: REG_FILE::READ: registers  2 =         36, 10 =          8 are read
+# @               20500: ALU_CTRL::MTYPE
+# @               20500: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @               20600: PC is now         24
+# @               20600: REG_FILE::READ: registers  1 =         32,  1 =         32 are read
+# @               20600: CONTROLLER: present state is ID, opcode is: 000000
+# @               20600: CONTROLLER: present state is ID, opcode is: 001000
+# @               20700: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @               20700: ALU_CTRL::RTYPE: func = 100000
+# @               20800: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @               20900: REG_FILE::WRITE: value         36 stored in register  1
+# @               20900: CONTROLLER: present state is IF
+# @               20900: REG_FILE::READ: registers  1 =         36,  1 =         36 are read
+# @               20900: ALU_CTRL::MTYPE
+# @               20900: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @               21000: PC is now         28
+# @               21000: REG_FILE::READ: registers  1 =         36,  3 =         40 are read
+# @               21000: CONTROLLER: present state is ID, opcode is: 001000
+# @               21000: CONTROLLER: present state is ID, opcode is: 000000
+# @               21000: ALU_CTRL::MTYPE
+# @               21000: CONTROLLER: present state is ID, opcode is: 000000
+# @               21100: CONTROLLER: present state is RTYPE_EXECUTION
+# @               21100: ALU_CTRL::RTYPE: func = 101010
+# @               21200: CONTROLLER: present state is RTYPE_COMPLETION
+# @               21300: REG_FILE::WRITE: value          1 stored in register  4
+# @               21300: CONTROLLER: present state is IF
+# @               21300: ALU_CTRL::MTYPE
+# @               21300: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @               21400: PC is now         32
+# @               21400: REG_FILE::READ: registers  4 =          1,  0 =          0 are read
+# @               21400: CONTROLLER: present state is ID, opcode is: 000000
+# @               21400: CONTROLLER: present state is ID, opcode is: 000100
+# @               21400: ALU_CTRL::MTYPE
+# @               21400: CONTROLLER: present state is ID, opcode is: 000100
+# @               21500: CONTROLLER: present state is BRANCH
+# @               21500: ALU_CTRL::BTYPE
+# @               21600: CONTROLLER: present state is IF
+# @               21600: ALU_CTRL::MTYPE
+# @               21600: MEMORY::READ: value 00001000000000000000000000000011 at address    32 is read
+# @               21700: PC is now         36
+# @               21700: REG_FILE::READ: registers  0 =          0,  0 =          0 are read
+# @               21700: CONTROLLER: present state is ID, opcode is: 000100
+# @               21700: CONTROLLER: present state is ID, opcode is: 000010
+# @               21700: ALU_CTRL::MTYPE
+# @               21700: CONTROLLER: present state is ID, opcode is: 000010
+# @               21800: CONTROLLER: present state is JUMP
+# @               21800: ALU_CTRL::JTYPE
+# @               21900: PC is now         12
+# @               21900: CONTROLLER: present state is IF
+# @               21900: ALU_CTRL::MTYPE
+# @               21900: MEMORY::READ: value 10001100001010100000001111101000 at address    12 is read
+# @               22000: PC is now         16
+# @               22000: REG_FILE::READ: registers  1 =         36, 10 =          8 are read
+# @               22000: CONTROLLER: present state is ID, opcode is: 000010
+# @               22000: CONTROLLER: present state is ID, opcode is: 100011
+# @               22000: ALU_CTRL::MTYPE
+# @               22000: CONTROLLER: present state is ID, opcode is: 100011
+# @               22100: CONTROLLER: present state is MEM_REF
+# @               22200: CONTROLLER: present state is LW_READ
+# @               22200: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               22200: MEMORY::READ: value 00000000000000000000000000001001 at address  1036 is read
+# @               22300: CONTROLLER: present state is LW_COMPLETION
+# @               22400: REG_FILE::WRITE: value          9 stored in register 10
+# @               22400: CONTROLLER: present state is IF
+# @               22400: REG_FILE::READ: registers  1 =         36, 10 =          9 are read
+# @               22400: ALU_CTRL::MTYPE
+# @               22400: MEMORY::READ: value 00000000010010100001000000100000 at address    16 is read
+# @               22500: PC is now         20
+# @               22500: REG_FILE::READ: registers  2 =         36, 10 =          9 are read
+# @               22500: CONTROLLER: present state is ID, opcode is: 100011
+# @               22500: CONTROLLER: present state is ID, opcode is: 000000
+# @               22500: ALU_CTRL::MTYPE
+# @               22500: CONTROLLER: present state is ID, opcode is: 000000
+# @               22600: CONTROLLER: present state is RTYPE_EXECUTION
+# @               22600: ALU_CTRL::RTYPE: func = 100000
+# @               22700: CONTROLLER: present state is RTYPE_COMPLETION
+# @               22800: REG_FILE::WRITE: value         45 stored in register  2
+# @               22800: CONTROLLER: present state is IF
+# @               22800: REG_FILE::READ: registers  2 =         45, 10 =          9 are read
+# @               22800: ALU_CTRL::MTYPE
+# @               22800: MEMORY::READ: value 00100000001000010000000000000100 at address    20 is read
+# @               22900: PC is now         24
+# @               22900: REG_FILE::READ: registers  1 =         36,  1 =         36 are read
+# @               22900: CONTROLLER: present state is ID, opcode is: 000000
+# @               22900: CONTROLLER: present state is ID, opcode is: 001000
+# @               23000: CONTROLLER: present state is IMMEDIATE_EXECUTION
+# @               23000: ALU_CTRL::RTYPE: func = 100000
+# @               23100: CONTROLLER: present state is IMMEDIATE_COMPLETION
+# @               23200: REG_FILE::WRITE: value         40 stored in register  1
+# @               23200: CONTROLLER: present state is IF
+# @               23200: REG_FILE::READ: registers  1 =         40,  1 =         40 are read
+# @               23200: ALU_CTRL::MTYPE
+# @               23200: MEMORY::READ: value 00000000001000110010000000101010 at address    24 is read
+# @               23300: PC is now         28
+# @               23300: REG_FILE::READ: registers  1 =         40,  3 =         40 are read
+# @               23300: CONTROLLER: present state is ID, opcode is: 001000
+# @               23300: CONTROLLER: present state is ID, opcode is: 000000
+# @               23300: ALU_CTRL::MTYPE
+# @               23300: CONTROLLER: present state is ID, opcode is: 000000
+# @               23400: CONTROLLER: present state is RTYPE_EXECUTION
+# @               23400: ALU_CTRL::RTYPE: func = 101010
+# @               23500: CONTROLLER: present state is RTYPE_COMPLETION
+# @               23600: REG_FILE::WRITE: value          0 stored in register  4
+# @               23600: CONTROLLER: present state is IF
+# @               23600: ALU_CTRL::MTYPE
+# @               23600: MEMORY::READ: value 00010000100000000000000000000001 at address    28 is read
+# @               23700: PC is now         32
+# @               23700: REG_FILE::READ: registers  4 =          0,  0 =          0 are read
+# @               23700: CONTROLLER: present state is ID, opcode is: 000000
+# @               23700: CONTROLLER: present state is ID, opcode is: 000100
+# @               23700: ALU_CTRL::MTYPE
+# @               23700: CONTROLLER: present state is ID, opcode is: 000100
+# @               23800: CONTROLLER: present state is BRANCH
+# @               23800: ALU_CTRL::BTYPE
+# @               23900: PC is now         36
+# @               23900: CONTROLLER: present state is IF
+# @               23900: ALU_CTRL::MTYPE
+# @               23900: MEMORY::READ: value 10101100000000100000011111010000 at address    36 is read
+# @               24000: PC is now         40
+# @               24000: REG_FILE::READ: registers  0 =          0,  2 =         45 are read
+# @               24000: CONTROLLER: present state is ID, opcode is: 000100
+# @               24000: CONTROLLER: present state is ID, opcode is: 101011
+# @               24000: ALU_CTRL::MTYPE
+# @               24000: CONTROLLER: present state is ID, opcode is: 101011
+# @               24100: CONTROLLER: present state is MEM_REF
+# @               24200: CONTROLLER: present state is SW
+# @               24300: MEMORY::WRITE: value         45 stored at address  2000
+# @               24300: CONTROLLER: present state is IF

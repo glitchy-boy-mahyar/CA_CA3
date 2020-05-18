@@ -13,7 +13,7 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
     
     reg [5:0] ctrl_func;
     reg [1:0] alu_ctrl;
-    reg pc_write, pc_write_cond;
+    reg pc_write, pc_write_cond , zero;
 
     parameter IF = 4'b0000;
     parameter ID = 4'b0001;
@@ -32,7 +32,13 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
 
     alu_controller alu_ctrl_unit(alu_ctrl , ctrl_func , alu_op);
 
-    pc_controller pc_ctrl_unit(pc_write , ZERO , pc_write_cond , pc_cntrl_out);
+    pc_controller pc_ctrl_unit(pc_write , zero , pc_write_cond , pc_cntrl_out);
+
+    always @(ZERO or ps)begin
+        if(opcode == `OPC_BNE)
+            zero = ~ZERO;
+        else zero = ZERO;
+    end
 
     always @(opcode or func) begin
         if (opcode == `OPC_ANDI)
