@@ -25,15 +25,15 @@ module processor_test();
 
     initial begin
         clk = 1'b1;
-        repeat(1000) #50 clk = ~clk;
+        repeat(2000) #50 clk = ~clk;
     end
 
     initial begin
         rst = 1'b1;
         #50 rst = 1'b0;
-        // #15100 $stop; // it is for testbench no.2
+        #80000 $stop; // it is for testbench no.2
 
-        //#630000000 $stop; // it is for testbench no.1
+        // #24300 $stop; // it is for testbench no.1
         
     end
 endmodule

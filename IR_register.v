@@ -4,8 +4,8 @@ module IR_register(in , out , load , clk);
     input load , clk;
     output reg [31:0] out;
 
-    always @(posedge clk)begin
-        if(load)begin
+    always @(posedge clk) begin
+        if (load) begin
             out <= in;
         end
     end

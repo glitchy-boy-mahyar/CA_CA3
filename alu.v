@@ -12,22 +12,22 @@ module alu(a, b, y, zero, alu_ctrl);
         case (alu_ctrl)
             `ALU_AND: begin
                 y = a & b;
-                $display("@%t: ALU::AND: a = %d, b = %d", $time, a, b);
+                // $display("@%t: ALU::AND: a = %d, b = %d", $time, a, b);
             end
             
             `ALU_OR: begin
                 y = a | b;
-                $display("@%t: ALU::OR: a = %d, b = %d", $time, a, b);
+                // $display("@%t: ALU::OR: a = %d, b = %d", $time, a, b);
             end
             
             `ALU_ADD: begin
                 y = a + b;
-                $display("@%t: ALU::ADD: a = %d, b = %d", $time, a, b);
+                // $display("@%t: ALU::ADD: a = %d, b = %d", $time, a, b);
             end
             
             `ALU_SUB: begin
                 y = a - b;
-                $display("@%t: ALU::SUB: a = %d, b = %d", $time, a, b);
+                // $display("@%t: ALU::SUB: a = %d, b = %d", $time, a, b);
             end
 
             `ALU_SLT: begin
@@ -39,7 +39,7 @@ module alu(a, b, y, zero, alu_ctrl);
                     y = `WORD_ZERO;
                 else if (a[31] == 1'b0 && b[31] == 1'b0)
                     y = a < b? `WORD_ONE: `WORD_ZERO;
-                $display("@%t: ALU::SLT: a = %d, b = %d", $time, a, b);
+                // $display("@%t: ALU::SLT: a = %d, b = %d", $time, a, b);
             end
             `ALU_OFF: y = `Z;
 

@@ -13,15 +13,15 @@ module data_mem(address, write_data, read_data,
 	reg [7:0] mem[0:2 ** 16 - 1];
 
 	initial begin
-		$readmemb("test_1_data_mem.bin", mem); // it is for testbench no.1
-		// $readmemb("test_2_data_mem.bin", mem); // it is for testbench no.2
+		// $readmemb("test_1_data_mem.bin", mem); // it is for testbench no.1
+		$readmemb("test_2_data_mem.bin", mem); // it is for testbench no.2
 	end
 	
 	always @(posedge clk) begin
 		if (mem_write == 1'b1) begin
 			{mem[address[15:0]], mem[address[15:0] + 1], 
 					mem[address[15:0] + 2], mem[address[15:0] + 3]} <= write_data;
-			$display("@%t: DATA_MEM::WRITE: value %d stored at address %d", $time, write_data, address[15:0]);
+			$display("@%t: MEMORY::WRITE: value %d stored at address %d", $time, write_data, address[15:0]);
 		end
 	end
 
@@ -29,7 +29,7 @@ module data_mem(address, write_data, read_data,
 		if (mem_read == 1'b1) begin
 			read_data = {mem[address[15:0]], mem[address[15:0] + 1], 
 					mem[address[15:0] + 2], mem[address[15:0] + 3]};
-			$display("@%t: DATA_MEM::READ: value %d at address %d is read", $time, {mem[address[15:0]], mem[address[15:0] + 1], 
+			$display("@%t: MEMORY::READ: value %b at address %d is read", $time, {mem[address[15:0]], mem[address[15:0] + 1], 
 					mem[address[15:0] + 2], mem[address[15:0] + 3]}, address[15:0]);
 		end
 		else
@@ -37,9 +37,6 @@ module data_mem(address, write_data, read_data,
 	end
 
 endmodule
-
-
-
 
 module data_mem_test();
 	reg [31:0] address, write_data;

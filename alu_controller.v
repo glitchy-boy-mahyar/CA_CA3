@@ -43,7 +43,7 @@ module alu_controller(alu_ctrl, func, alu_op);
 
                     default: alu_op = `ALU_OFF; 
                 endcase
-                $display("@%t: ALU_CTRL::RTYPE: func = %d", $time, func);
+                $display("@%t: ALU_CTRL::RTYPE: func = %b", $time, func);
             end
 
             `ALU_CTRL_JTYPE: begin

@@ -4,7 +4,7 @@ module mux_32_bit_4sel(in_0, in_1 , in_2 , in_3, out, select);
     input [1:0] select;
     output reg [31:0] out;
 
-    always @(in_0, in_1, select) begin
+    always @(in_0, in_1, in_2, in_3, select) begin
         if (select == 2'b00)
             out = in_0;
         else if (select == 2'b01)

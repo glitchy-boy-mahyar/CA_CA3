@@ -28,6 +28,7 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
     parameter JAL = 4'b1010;
     parameter JR = 4'b1011;
     parameter IMMEDIATE_EXEC = 4'b1100;
+    parameter IMMEDIATE_COMPLETION = 4'b1101;
 
     alu_controller alu_ctrl_unit(alu_ctrl , ctrl_func , alu_op);
 
@@ -39,14 +40,18 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
         else if (opcode == `OPC_ADDI)
             ctrl_func = `FUNC_ADD;
         else
-            ctrl_func = func;        
+            ctrl_func = func;
     end
 
     reg [3:0] ps, ns;
-    always @(ps) begin
+    always @(ps or opcode or ctrl_func) begin
         case(ps)
-            IF: ns = ID;
+            IF: begin
+                ns = ID;
+                $display("@%t: CONTROLLER: present state is IF", $time);
+            end
             ID: begin
+                $display("@%t: CONTROLLER: present state is ID, opcode is: %b", $time, opcode);
                 if (opcode == `OPC_BEQ || opcode == `OPC_BNE)
                     ns = BRANCH;
                 else if (opcode == `OPC_JUMP)
@@ -62,24 +67,59 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
                 else if (opcode == `OPC_ADDI || opcode == `OPC_ANDI)
                     ns = IMMEDIATE_EXEC;
             end
-            BRANCH: ns = IF;
-            JUMP: ns = IF;
-            RTYPE_EXEC: ns = RTYPE_COMPLETION;
-            RTYPE_COMPLETION: ns = IF;
+            BRANCH: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is BRANCH", $time);
+            end
+            JUMP: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is JUMP", $time);
+            end
+            RTYPE_EXEC: begin
+                ns = RTYPE_COMPLETION;
+                $display("@%t: CONTROLLER: present state is RTYPE_EXECUTION", $time);
+            end
+            RTYPE_COMPLETION: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is RTYPE_COMPLETION", $time);
+            end
             MEM_REF: begin
+                $display("@%t: CONTROLLER: present state is MEM_REF", $time);
                 if (opcode == `OPC_LW)
                     ns = LW_READ;
                 else if (opcode == `OPC_SW)
                     ns = SW;
             end
             
-            LW_READ: ns = LW_COMPLETION;
-            LW_COMPLETION: ns = IF;
-            SW: ns = IF;
-            JAL: ns = IF;
-            JR: ns = IF;
-            IMMEDIATE_EXEC: ns = RTYPE_COMPLETION;
-            default: ns = IF;            
+            LW_READ: begin 
+                ns = LW_COMPLETION;
+                $display("@%t: CONTROLLER: present state is LW_READ", $time);
+            end
+            LW_COMPLETION: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is LW_COMPLETION", $time);
+            end
+            SW: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is SW", $time);
+            end
+            JAL: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is JAL", $time);
+            end
+            JR: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is JR", $time);
+            end
+            IMMEDIATE_EXEC: begin
+                ns = IMMEDIATE_COMPLETION;
+                $display("@%t: CONTROLLER: present state is IMMEDIATE_EXECUTION", $time);
+            end
+            IMMEDIATE_COMPLETION: begin
+                ns = IF;
+                $display("@%t: CONTROLLER: present state is IMMEDIATE_COMPLETION", $time);
+            end
+            default: ns = IF;
         endcase    
     end
 
@@ -138,7 +178,6 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
             end
 
             LW_COMPLETION: begin
-                reg_dst = 1'b1;
                 mem_to_reg = 1'b1;
                 reg_write = 1'b1;
             end
@@ -166,13 +205,19 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
                 alu_src_B = 2'b10;
                 alu_ctrl = `ALU_CTRL_RTYPE;
             end
-        
+
+            IMMEDIATE_COMPLETION: begin
+                reg_write = 1'b1;
+            end        
         endcase
     end
     always @(posedge clk or posedge rst) begin
-        if (rst == 1'b1)
+        if (rst == 1'b1) begin
             ps <= IF;
-        else
+            $display("$%t: CONTROLLER::RESET: present state is 0", $time);
+        end
+        else begin
             ps <= ns;
+        end
     end
 endmodule

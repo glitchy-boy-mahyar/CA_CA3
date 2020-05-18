@@ -59,6 +59,7 @@ module data_path(clk, rst, pc_write, IR_write, reg_dst , jal_reg, pc_to_reg,
     always @(IR_out) begin
         opcode = IR_out[31:26];
         func = IR_out[5:0];
+        // $display("@%t: DATAPATH: opcode is %b, func is %b", $time, opcode, func);
     end
 
 endmodule
