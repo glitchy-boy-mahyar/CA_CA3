@@ -13,7 +13,7 @@ module data_mem(address, write_data, read_data,
 	reg [7:0] mem[0:2 ** 16 - 1];
 
 	initial begin
-		//$readmemb("test_1_data_mem.bin", mem); // it is for testbench no.1
+		// $readmemb("test_1_data_mem.bin", mem); // it is for testbench no.1
 		$readmemb("test_2_data_mem.bin", mem); // it is for testbench no.2
 	end
 	

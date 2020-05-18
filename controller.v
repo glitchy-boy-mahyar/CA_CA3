@@ -34,8 +34,8 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
 
     pc_controller pc_ctrl_unit(pc_write , zero , pc_write_cond , pc_cntrl_out);
 
-    always @(ZERO or ps)begin
-        if(opcode == `OPC_BNE)
+    always @(ZERO or opcode) begin
+        if (opcode == `OPC_BNE)
             zero = ~ZERO;
         else zero = ZERO;
     end
