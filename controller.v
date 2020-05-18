@@ -13,7 +13,7 @@ module controller(clk, rst, ZERO, opcode, func, pc_cntrl_out, IR_write, reg_dst,
     
     reg [5:0] ctrl_func;
     reg [1:0] alu_ctrl;
-    reg pc_write, pc_write_cond , zero;
+    reg pc_write, pc_write_cond, zero;
 
     parameter IF = 4'b0000;
     parameter ID = 4'b0001;
